@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="tabId" type="String" default="detailstab"/>
+    <aura:attribute name="boat" type="Boat__c" access="public"/> 
+    <aura:attribute name="id" type="Id" access="public"/>
+    <aura:attribute name="record" type="Object" description="The record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+    
+    <aura:handler event="c:BoatSelected" action="{!c.onBoatSelected}"/>
+    <aura:handler name="BoatReviewAdded" event="c:BoatReviewAdded" action="{!c.onBoatReviewAdded}"/>
+    
+    <force:recordData aura:id="service"
+                      fields="Id,Name,Description__c,Price__c,Length__c,Contact__r.Name, Contact__r.Email,Contact__r.HomePhone,BoatType__r.Name,Picture__c"
+                      recordId="{!v.id}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.boat}"
+                      mode="EDIT"
+                      recordUpdated="{!c.onRecordUpdated}"/>
+    
+    <aura:if isTrue="{! not(empty(v.boat)) }">
+        <lightning:tabset variant="default" aura:id="boattabs" selectedTabId="{!v.tabId}">
+            <lightning:tab label="Details" id="detailstab">
+                <c:BoatDetail aura:id="boatdetail" boat="{!v.boat}" />
+            </lightning:tab>
+            <lightning:tab label="Reviews" id="boatreviewtab">
+                <c:BoatReviews aura:id="boatreview" boat="{!v.boat}" />
+            </lightning:tab>
+            <lightning:tab label="Add Review" id="addreviewtab">
+                <c:AddBoatReview aura:id="addboatreview" boat="{!v.boat}" />
+            </lightning:tab>
+        </lightning:tabset>
+    </aura:if>
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

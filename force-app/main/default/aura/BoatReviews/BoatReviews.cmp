@@ -1,0 +1,61 @@
+<aura:component controller="BoatReviews">
+    <aura:attribute name="boat" type="Boat__c" access="public"/> 
+    <aura:attribute name="boatReviews" type="BoatReview__c[]" access="private"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.boat}" action="{!c.doInit}"/>
+    
+    <aura:method name="refresh" description="" action="{!c.doInit}" access="public" />
+    
+    <ui:scrollerWrapper class="scrollerSize">
+        <aura:iteration items="{!v.boatReviews}" var="boatReview">
+            <div class="slds-feed">
+                <ul class="slds-feed__list">
+                    <li class="slds-feed__item">
+                        <article class="slds-post">
+                            <header class="slds-post__header slds-media">
+                                <div class="slds-media__figure">
+                                    <a href="javascript:void(0);" class="slds-avatar slds-avatar_circle slds-avatar_large">
+                                        <img alt="{!boatReview.CreatedBy.Name}" src="{!boatReview.CreatedBy.SmallPhotoUrl}" title="{!boatReview.CreatedBy.Name + '\'s avatar'}" />
+                                    </a>
+                                </div>
+                                
+                                <div class="slds-media__body">
+                                    <div class="slds-grid slds-has-flexi-truncate">
+                                        <a href="javascript:void(0)" onclick="{!c.onUserInfoClick}"
+                                           data-userid="{!boatReview.CreatedBy.Id}">
+                                            {!boatReview.CreatedBy.Name}
+                                        </a>
+                                        &nbsp; &mdash; &nbsp; {!boatReview.CreatedBy.CompanyName}
+                                    </div>
+                                    <p><lightning:formattedDateTime value="{!boatReview.CreatedDate}" 
+                                                                    year="numeric" month="short" day="numeric"  
+                                                                    hour="2-digit" minute="2-digit" hour12="true"/></p>
+                                </div>
+                                
+                            </header>
+                            <div class="slds-post__content slds-text-longform">
+                                {!boatReview.Name}
+                            </div>
+                            <div class="slds-post__content slds-text-longform">
+                                {!boatReview.Comment__c}
+                            </div>
+                            <footer class="slds-post__footer">
+                                <ul class="slds-post__footer-actions-list slds-list_horizontal">
+                                    <c:FiveStarRating aura:id="FiveStarRating" readonly="true" value="{!boatReview.Rating__c}" />
+                                </ul>
+                            </footer>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </aura:iteration>
+    </ui:scrollerWrapper>
+    
+    <aura:if isTrue="{!v.boatReviews.length == 0}">
+        <lightning:layoutItem class="slds-align_absolute-center" flexibility="auto" padding="around-small">
+            <ui:outputText value="No reviews available" />
+        </lightning:layoutItem>
+    </aura:if>
+    
+</aura:component>

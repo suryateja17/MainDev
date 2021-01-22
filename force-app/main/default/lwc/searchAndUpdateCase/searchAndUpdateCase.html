@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title='Case Search and Update'>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Case #" placeholder='Search for a Case..' onchange={handleCaseNumChange}></lightning-input> 
+        </div>
+        
+        <template if:true={showGetCase}>
+            <div class="slds-p-left_medium">
+                <lightning-button variant="brand" label="Get Case" onclick={handleButtonClick} ></lightning-button>
+            </div>
+        </template>
+        <div>
+            <c-my-component casenum={caseN}></c-my-component>
+        </div>
+        <div class="slds-p-left_medium">
+        <template if:true={showForm}>
+            
+           <lightning-record-form
+            record-id={recordId}
+            object-api-name={objectApiName}
+            fields={fields}
+            columns="2"
+            mode="view"
+            onsubmit={handleSubmit}
+            oncancel={handleCancel} 
+            onsuccess={handleSuccess}
+            onerror={handleError}
+            onload={handleload}>
+            </lightning-record-form> 
+            </template>
+        </div>
+
+    </lightning-card>
+
+</template>
