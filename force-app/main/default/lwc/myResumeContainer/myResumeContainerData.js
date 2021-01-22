@@ -40,7 +40,7 @@ export const CAREER_SUMMARY={
     HEADING:"CAREER SUMMARY",
     DESCRIPTION: "I am a dedicated and hardworking Salesforce Developer with an innate desire to learn, excel and deliver high quality solutions on time. I am always looking for new and challenging tasks to enhance my current skills on the Force.com platform. Blessed with excellent communication skills and leadership skills, I thrive in a team environment and build solid long lasting relationships with my peers and superiors alike. I have 6 years of total experience in Salesforce development where i had the opportunity to design and implement various high performance and user friendly applications on the Force.com platform.",
     KEYS_POINTS:[
-        "3x Salesforce certified.",
+        "3x Salesforce certified. ",
         "Implemented numerous end to end features for orgs with 1000+ users.",
         "keypoint 3 Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "keypoint 4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
