@@ -42,7 +42,7 @@ export const CAREER_SUMMARY={
     KEYS_POINTS:[
         "3x Salesforce certified. ",
         "Implemented numerous end to end features for orgs with 1000+ users.",
-        "keypoin t 3 Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "keypoin t 3 Lorem Ips um is simply dummy text of the printing and typesetting industry.",
         "keypoint 4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
     ]
 }
